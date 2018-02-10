@@ -20,12 +20,12 @@ resource "aws_instance" "example" {
               EOF
 
   tags {
-    Name = "terraform-example"
+    Name = "terraform-example 2"
   }
 }
 
 resource "aws_security_group" "instance" {
-  name = "terraform-example-instance"
+  name = "terraform-example-instance 2"
 
   # Inbound HTTP from anywhere
   ingress {
