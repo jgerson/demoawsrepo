@@ -51,7 +51,7 @@ resource "aws_instance" "example3" {
 
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, World test" > index.html
+              echo "Hello, World test3" > index.html
               nohup busybox httpd -f -p "${var.server_port}" &
               EOF
 
