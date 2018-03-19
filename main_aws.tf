@@ -1,4 +1,4 @@
-# Deploy a single AMI, then execute the command, and then apply security groupsf
+# Deploy a single AMI, then execute the command, and then apply scsecurity groupsf
 
 provider "aws" {
   access_key = "${var.access_key}"
