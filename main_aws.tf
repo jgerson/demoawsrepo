@@ -1,4 +1,4 @@
-# Deploy a single AMI, execute command, apply security group
+# Deploy a single AMI, then execute command, apply security group
 
 provider "aws" {
   access_key = "${var.access_key}"
