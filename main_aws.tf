@@ -1,4 +1,19 @@
-# Deploy a single AMI, then execute the command, and then apply scsecurity groupsf
+variable "server_port" {
+  description = "The port the server will use for HTTP requests"
+  default = 8080
+}
+
+variable "access_key" {
+  description = "aws access_key"
+}
+
+variable "secret_key" {
+  description = "aws secret_key"
+}
+
+variable "region" {
+  description = "aws region"
+}
 
 provider "aws" {
   access_key = "${var.access_key}"
@@ -6,10 +21,10 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-resource "aws_instance" "example1" {
+resource "aws_instance" "example" {
   # Ubuntu Server 14.04 LTS (HVM), SSD Volume Type in us-east-1
   count = 1
-  ami = "ami-97785bed"
+  ami = "ami-2d39803a"
   instance_type = "t2.medium"
   vpc_security_group_ids = ["${aws_security_group.instance.id}"]
 
@@ -20,12 +35,12 @@ resource "aws_instance" "example1" {
               EOF
 
   tags {
-    Name = "terraform-example 1"
+    Name = "terraform-example"
   }
 }
 
 resource "aws_security_group" "instance" {
-  name = "terraform-example-instance 2"
+  name = "terraform-example-instance"
 
   # Inbound HTTP from anywhere
   ingress {
@@ -34,4 +49,8 @@ resource "aws_security_group" "instance" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+output "public_ip" {
+  value = "${aws_instance.example.*.public_ip}"
 }
