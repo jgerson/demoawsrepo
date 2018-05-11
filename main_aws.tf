@@ -1,5 +1,5 @@
 variable "server_port" {
-  description = "The port the server will use HTTP requests"
+  description = "The port the server will HTTP requests"
   default = 8080
 }
 
