@@ -13,50 +13,8 @@ resource "aws_instance" "example1" {
   instance_type = "t2.medium"
   vpc_security_group_ids = ["${aws_security_group.instance.id}"]
 
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "Hello, World test" > index.html
-              nohup busybox httpd -f -p "${var.server_port}" &
-              EOF
-
   tags {
     Name = "terraform-example 1"
-  }
-}
-
-resource "aws_instance" "example2" {
-  # Ubuntu Server 14.04 LTS (HVM), SSD Volume Type in us-east-1
-  count = 1
-  ami = "ami-97785bed"
-  instance_type = "t2.medium"
-  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
-
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "Hello, World test" > index.html
-              nohup busybox httpd -f -p "${var.server_port}" &
-              EOF
-
-  tags {
-    Name = "terraform-example 2"
-  }
-}
-
-resource "aws_instance" "example3" {
-  # Ubuntu Server 14.04 LTS (HVM), SSD Volume Type in us-east-1
-  count = 1
-  ami = "ami-97785bed"
-  instance_type = "t2.medium"
-  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
-
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "Hello, World test3" > index.html
-              nohup busybox httpd -f -p "${var.server_port}" &
-              EOF
-
-  tags {
-    Name = "terraform-example 3"
   }
 }
 
